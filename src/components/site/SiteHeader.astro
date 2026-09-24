@@ -1,0 +1,27 @@
+---
+import { buttonVariants } from '@/components/ui/button';
+import { publicNav } from '@/lib/public-nav';
+
+const pathname = Astro.url.pathname;
+
+function isCurrent(href: string) {
+	if (href === '/') return pathname === '/';
+	return pathname === href || pathname === `${href}/`;
+}
+---
+
+<header class="border-b border-border">
+	<nav class="mx-auto flex w-full max-w-3xl flex-wrap items-center gap-2 px-6 py-4" aria-label="Public">
+		{
+			publicNav.map((item) => (
+				<a
+					href={item.href}
+					class={buttonVariants({ variant: 'ghost' })}
+					aria-current={isCurrent(item.href) ? 'page' : undefined}
+				>
+					{item.label}
+				</a>
+			))
+		}
+	</nav>
+</header>
