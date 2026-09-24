@@ -1,0 +1,23 @@
+---
+import { buttonVariants } from '@/components/ui/button';
+import Layout from './Layout.astro';
+
+interface Props {
+	title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<Layout title={title}>
+	<meta slot="head" name="robots" content="noindex, nofollow" />
+	<header class="border-b border-border">
+		<div class="mx-auto flex w-full max-w-3xl items-center justify-between gap-4 px-6 py-4">
+			<p>Design system</p>
+			<a href="/" class={buttonVariants({ variant: 'outline' })}>Back to site</a>
+		</div>
+	</header>
+	<main class="mx-auto w-full max-w-3xl px-6 py-10">
+		<slot />
+	</main>
+</Layout>
